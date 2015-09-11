@@ -10,6 +10,7 @@
     .module('angular2', [
       'ngNewRouter',
       'angular2.config',
+      'Angular2App.value',
       'angular2.components.itemlist',
       'angular2.components.item',
       'angular2.components.history',
@@ -27,7 +28,7 @@
     {path: '/user', component: 'user'}
   ];
 
-  AppController.$inject = [];
+  AppController.$inject = ['Angular2AppValue', '$rootScope'];
 
   /**
    * AppController
@@ -36,5 +37,20 @@
    * @main angular2
    * @constructor
    */
-  function AppController () {}
+  function AppController (Angular2AppValue, $rootScope) {
+    this.Angular2AppValue = Angular2AppValue;
+    this.$rootScope = $rootScope;
+    vm = this;
+    vm.$rootScope.$watch(cartsValue, cartsSet);
+  }
+
+  var vm;
+
+  var cartsSet = function(value) {
+    vm.carts = value;
+  };
+
+  var cartsValue = function () {
+    return vm.Angular2AppValue.carts;
+  };
 })();

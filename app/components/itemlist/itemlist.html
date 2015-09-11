@@ -10,5 +10,7 @@
       <p>{{data.description}}</p>
       <p>{{data.isbn}}</p>
       <p>{{data.price | currency:"&yen;":0}}</p>
+      <p><a ng-click="itemlist.addCart(data.isbn)" class="btn btn-default" role="button">+</a>
+      <a ng-click="itemlist.removeCart(data.isbn)" class="btn btn-default" role="button">-</a></p>
     </div>
   </li>

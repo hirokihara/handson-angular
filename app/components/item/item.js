@@ -37,7 +37,7 @@
     var books = vm.BooksService.get({isbn: vm.isbn}).$promise;
     books
       .then(function (item) {
-        vm.image = item.image
+        vm.image = item.image;
         vm.title = item.title;
         vm.description = item.description;
         vm.author = item.author;

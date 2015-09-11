@@ -10,7 +10,7 @@
     .module('angular2.components.itemlist', ['angular2.service.books'])
     .controller('ItemlistController', ItemlistController);
 
-  ItemlistController.$inject = ['BooksService'];
+  ItemlistController.$inject = ['BooksService', 'Angular2AppValue'];
 
   /**
    * ItemlistController
@@ -18,9 +18,10 @@
    * @class ItemlistController
    * @constructor
    */
-  function ItemlistController(BooksService) {
+  function ItemlistController(BooksService, Angular2AppValue) {
     console.log('ItemlistController Constructor');
     this.BooksService = BooksService;
+    this.Angular2AppValue = Angular2AppValue;
   }
 
   /**
@@ -42,6 +43,21 @@
       });
   };
 
+  /*
+  */
+  ItemlistController.prototype.addCart = function (isbn) {
+    console.log('ItemlistController.prototype.addCart');
+    this.Angular2AppValue.carts = this.Angular2AppValue.carts + 1;
+  };
+
+  /*
+  */
+  ItemlistController.prototype.removeCart = function (isbn) {
+    console.log('ItemlistController.prototype.removeCart');
+    if (this.Angular2AppValue.carts > 0) {
+      this.Angular2AppValue.carts = this.Angular2AppValue.carts - 1;
+    }
+  };
   /**
    * Angular ViewModel
    *
