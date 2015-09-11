@@ -1,0 +1,13 @@
+  <li class="media" ng-repeat="data in itemlist.items">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="{{data.image}}" alt="...">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading">{{data.title}}</h4>
+      <p>{{data.description}}</p>
+      <p>{{data.isbm}}</p>
+      <p>{{data.price | currency:"&yen;":0}}</p>
+    </div>
+  </li>
