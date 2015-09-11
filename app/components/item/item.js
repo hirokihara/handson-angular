@@ -7,10 +7,11 @@
   'use strict';
 
   angular
-    .module('angular2.components.item', [])
+    .module('angular2.components.item', [
+      'angular2.service.books'])
     .controller('ItemController', ItemController);
 
-  ItemController.$inject = [];
+  ItemController.$inject = ['$routeParams', 'BooksService'];
 
   /**
    * ItemController
@@ -18,8 +19,10 @@
    * @class ItemController
    * @constructor
    */
-  function ItemController() {
+  function ItemController($routeParams, BooksService) {
     console.log('ItemController Constructor');
+    this.isbn = $routeParams.isbn;
+    this.BooksService = BooksService;
   }
 
   /**
@@ -31,8 +34,21 @@
   ItemController.prototype.activate = function() {
     console.log('ItemController activate Method');
     vm = this;
+    var books = vm.BooksService.get({isbn: vm.isbn}).$promise;
+    books
+      .then(function (item) {
+        vm.image = item.image
+        vm.title = item.title;
+        vm.description = item.description;
+        vm.author = item.author;
+        vm.publisher = item.publisher;
+        vm.isbn = item.isbn;
+        vm.price = item.price;
+      })
+      .catch(function (e) {
+        console.log(e);
+      });
   };
-
   /**
    * Angular ViewModel
    *

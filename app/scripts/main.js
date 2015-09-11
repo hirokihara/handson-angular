@@ -21,7 +21,7 @@
   AppController.$routeConfig = [
     {path: '/',       redirectTo: '/itemlist'},
     {path: '/itemlist',    component: 'itemlist'},
-    {path: '/item',   component: 'item'},
+    {path: '/item/:isbn',   component: 'item'},
     {path: '/history',    component: 'history'},
     {path: '/carts',   component: 'carts'},
     {path: '/user', component: 'user'}

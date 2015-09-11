@@ -19,7 +19,7 @@
    * @constructor
    */
   function BooksService($resource) {
-    return $resource('api/books', {});
+    return $resource('/api/books/:isbn', {});
   }
 
 })();

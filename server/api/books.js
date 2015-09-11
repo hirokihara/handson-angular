@@ -24,8 +24,13 @@ exports = module.exports = function(app) {
 
   app.get('/api/books/:id', function(req, res) {
     var id = req.params.id;
+    var book = books.filter(function (item, index) {
+      if (item.isbn === id) {
+        return true;
+      }
+    });
     // something
-    res.status(200).json(books);
+    res.status(200).json(book[0]);
   });
 
   app.post('/api/books', function(req, res) {
